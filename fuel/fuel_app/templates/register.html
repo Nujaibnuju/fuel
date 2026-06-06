@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fuel Calculator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+       *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#f4f4f4;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    padding:15px;
+}
+
+.card{
+    width:100%;
+    max-width:350px;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px #ccc;
+}
+
+h2{
+    text-align:center;
+    margin-bottom:15px;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    background:green;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.result{
+    margin-top:15px;
+    background:#e8f5e9;
+    padding:10px;
+    border-radius:5px;
+}
+
+/* Mobile Responsive */
+@media(max-width:480px){
+
+    .card{
+        max-width:100%;
+        padding:15px;
+    }
+
+    h2{
+        font-size:22px;
+    }
+
+    input,
+    button{
+        font-size:16px;
+    }
+}
+    </style>
+</head>
+<body>
+
+<div class="card">
+
+    <h2>⛽ Fuel Calculator</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <input type="number" name="distance" placeholder="Distance (KM)" required>
+
+        <input type="number" name="mileage" placeholder="Mileage (KM/L)" required>
+
+        <button type="submit">Calculate</button>
+    </form>
+
+    {% if result %}
+    <div class="result">
+        <h3>Result</h3>
+        <p>Fuel Needed: {{ result }} Liters</p>
+    </div>
+    {% endif %}
+
+</div>
+
+</body>
+</html>
